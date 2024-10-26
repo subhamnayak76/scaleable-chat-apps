@@ -6,6 +6,7 @@ import { createServer } from "http";
 import { setupSocket } from "./socket.js";
 import { createAdapter } from "@socket.io/redis-streams-adapter";;
 import  redis from "./config/redis.js";
+
 // import { instrument } from "@socket.io/admin-ui";
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -15,6 +16,7 @@ const io = new Server(server, {
     origin: "http://localhost:3000",
   },
   adapter: createAdapter(redis),
+  
 
 });
 
@@ -41,3 +43,7 @@ app.get("/", (req: Request, res: Response) => {
 app.use('/api',router)
 
 server.listen(PORT, () => console.log(`Server is running on PORT ${PORT}`));
+
+
+
+
